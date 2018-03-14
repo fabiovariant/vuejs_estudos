@@ -1,6 +1,6 @@
-# cwt_new_r2
+# Estudos Vuejs
 
-> Prototipo do novo R2
+> Estudos Vue
 
 ## Build Setup
 
