@@ -5,7 +5,7 @@ import Router from 'vue-router'
 import Full from '@/containers/Full'
 
 // Views
-import Dashboard from '@/views/HelloWorld'
+import Home from '@/views/Home'
 
 Vue.use(Router)
 
@@ -16,14 +16,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/Home',
       name: 'Home',
       component: Full,
       children: [
         {
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: Dashboard
+          path: 'Home',
+          name: 'Home',
+          component: Home
         }
 
       ]

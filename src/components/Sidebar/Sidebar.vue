@@ -51,18 +51,18 @@
   </div>
 </template>
 <script>
-import SidebarFooter from "./SidebarFooter";
-import SidebarForm from "./SidebarForm";
-import SidebarHeader from "./SidebarHeader";
-import SidebarMinimizer from "./SidebarMinimizer";
-import SidebarNavDivider from "./SidebarNavDivider";
-import SidebarNavDropdown from "./SidebarNavDropdown";
-import SidebarNavLink from "./SidebarNavLink";
-import SidebarNavTitle from "./SidebarNavTitle";
-import SidebarNavItem from "./SidebarNavItem";
-import SidebarNavLabel from "./SidebarNavLabel";
+import SidebarFooter from './SidebarFooter'
+import SidebarForm from './SidebarForm'
+import SidebarHeader from './SidebarHeader'
+import SidebarMinimizer from './SidebarMinimizer'
+import SidebarNavDivider from './SidebarNavDivider'
+import SidebarNavDropdown from './SidebarNavDropdown'
+import SidebarNavLink from './SidebarNavLink'
+import SidebarNavTitle from './SidebarNavTitle'
+import SidebarNavItem from './SidebarNavItem'
+import SidebarNavLabel from './SidebarNavLabel'
 export default {
-  name: "sidebar",
+  name: 'sidebar',
   props: {
     navItems: {
       type: Array,
@@ -83,16 +83,16 @@ export default {
     SidebarNavLabel
   },
   methods: {
-    handleClick(e) {
-      e.preventDefault();
-      e.target.parentElement.classList.toggle("open");
+    handleClick (e) {
+      e.preventDefault()
+      e.target.parentElement.classList.toggle('open')
     }
   }
-};
+}
 </script>
 
 <style lang="css">
-.nav-link {
-  cursor: pointer;
-}
+  .nav-link {
+    cursor:pointer;
+  }
 </style>
