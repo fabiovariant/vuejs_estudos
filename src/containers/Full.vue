@@ -12,6 +12,7 @@
     <AppFooter/>
   </div>
 </template>
+
 <script>
 import nav from '../_nav'
 import { Header as AppHeader, Sidebar, Footer as AppFooter } from '../components/'
