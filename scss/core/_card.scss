@@ -1,6 +1,4 @@
 .card {
-  margin-bottom: 1.5 * $spacer;
-
   // Cards with color accent
   @each $color, $value in $theme-colors {
     &.bg-#{$color} {
@@ -59,7 +57,8 @@
   }
 
   .btn {
-    margin-top: - $input-btn-padding-y;
+    color: #fff;
+    text-align: left;
   }
   .btn-sm {
     margin-top: - $input-btn-padding-y-sm;

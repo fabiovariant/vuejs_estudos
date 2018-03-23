@@ -16,16 +16,26 @@ export default {
     },
     {
       name: 'Cadastrar',
-      url: '/cadastro',
+      url: '/register',
       icon: 'icon-cloud-upload',
       children: [
         {
           name: 'Básico',
-          url: '/cadastro/basico',
+          url: '/register/basic',
           children: [
             {
-              name: ' Aeroporto',
-              url: '/cadastro/basico/aeroporto'
+              name: 'Aeroporto',
+              url: '/register/basic/airport'
+            }
+          ]
+        },
+        {
+          name: 'Fornecedores',
+          url: '/register/provider',
+          children: [
+            {
+              name: 'Cia. Aérea',
+              url: '/register/provider/airline'
             }
           ]
         }
@@ -33,16 +43,16 @@ export default {
     },
     {
       name: 'Pesquisar/Alterar',
-      url: '/pesquisa',
+      url: '/search_alt',
       icon: 'icon-magnifier-add',
       children: [
         {
           name: 'Básico',
-          url: '/pesquisa/basico',
+          url: '/search_alt/basic',
           children: [
             {
               name: ' Aeroporto',
-              url: '/pesquisa/basico/aeroporto'
+              url: '/search_alt/basic/airport'
             }
           ]
         }
