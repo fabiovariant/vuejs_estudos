@@ -2,7 +2,7 @@
   <div>
     <b-form>
       <div slot="header">
-        <h1>Cadastro Aeroporto</h1>
+        <h1>Cadastro Cia. Aérea</h1>
       </div>
       <div role="tablist">
         
@@ -30,16 +30,6 @@
                   </b-form-group>
                 </b-col>
               </b-row>
-
-              <b-row class="form-group">
-                <b-col sm="12">
-                  <b-form-group>
-                    <label for="ccnumber">IATA <small style="color: red;">obrigatório</small></label>
-                    <b-form-input type="text" id="iata" placeholder="MIA"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row>
-
             </b-card-body>
           </b-collapse>
         </b-card>

@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// Containers
+//  Containers
 import Full from '@/containers/Full'
+
+//  Views routes
+import registerRoutes from '@/views/register/routes'
 
 // Views
 import Home from '@/views/Home'
-import CadAirport from '@/views/register/basic/Airport'
-import CadAirline from '@/views/register/providers/Airline'
 
 Vue.use(Router)
 
@@ -27,43 +28,7 @@ export default new Router({
           name: 'Home',
           component: Home
         },
-        {
-          path: 'register',
-          name: 'Cadastro',
-          component: {
-            render (c) { return c('router-view') }
-          },
-          children: [
-            {
-              path: 'basic',
-              name: 'Basico',
-              component: {
-                render (c) { return c('router-view') }
-              },
-              children: [
-                {
-                  path: 'airport',
-                  name: 'Aeroporto',
-                  component: CadAirport
-                }
-              ]
-            },
-            {
-              path: 'provider',
-              name: 'Fornecedor',
-              component: {
-                render (c) { return c('router-view') }
-              },
-              children: [
-                {
-                  path: 'airline',
-                  name: 'Cia. Aérea',
-                  component: CadAirline
-                }
-              ]
-            }
-          ]
-        }
+        registerRoutes
       ]
     }
   ]

@@ -15,7 +15,7 @@ export default {
       icon: 'icon-home'
     },
     {
-      name: 'Cadastrar',
+      name: 'Cadastro',
       url: '/register',
       icon: 'icon-cloud-upload',
       children: [
@@ -36,23 +36,6 @@ export default {
             {
               name: 'Cia. Aérea',
               url: '/register/provider/airline'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name: 'Pesquisar/Alterar',
-      url: '/search_alt',
-      icon: 'icon-magnifier-add',
-      children: [
-        {
-          name: 'Básico',
-          url: '/search_alt/basic',
-          children: [
-            {
-              name: ' Aeroporto',
-              url: '/search_alt/basic/airport'
             }
           ]
         }
