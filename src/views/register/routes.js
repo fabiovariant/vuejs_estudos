@@ -1,6 +1,7 @@
 // Views
 import CadAltAirport from '@/views/register/basic/CadAltAirport'
 import CadAirline from '@/views/register/providers/Airline'
+import SearchAirport from '@/views/register/basic/SearchAirport'
 
 export default {
   path: 'register',
@@ -18,7 +19,12 @@ export default {
       children: [
         {
           path: 'airport',
-          name: 'Aeroporto',
+          name: 'Buscar Aeroporto',
+          component: SearchAirport
+        },
+        {
+          path: 'airport/new',
+          name: 'Cadastrar Aeroporto',
           component: CadAltAirport
         }
       ]

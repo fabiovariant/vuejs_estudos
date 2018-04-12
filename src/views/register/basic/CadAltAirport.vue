@@ -26,15 +26,16 @@
             </b-row>
             <b-form-group>
               <label for="country">País</label>
-              <b-form-input type="text" id="country" placeholder="Estados Unidos"></b-form-input>
+              <b-form-select id="country" v-model="selectedCountry" :options="countries" class="mb-3" />
             </b-form-group>
             <b-form-group>
               <label for="state">Estado</label>
-              <b-form-input type="text" id="state" placeholder="Flórida"></b-form-input>
+              <b-form-select id="state" v-model="selectedState" :options="states" :disabled="selectedCountry == null"
+                  class="mb-3" />
             </b-form-group>
             <b-form-group>
               <label for="city">Cidade</label>
-              <b-form-input type="text" id="city" placeholder="Miami"></b-form-input>
+              <b-form-select id="city" v-model="selectedCity" :options="cities" :disabled="selectedState == null" class="mb-3" />
             </b-form-group>
             <b-row>
               <b-col sm="4">
@@ -73,10 +74,35 @@
 <script>
 export default {
   name: 'cadAeroporto',
-  data () {
+  data() {
     return {
-      showCollapse: true,
-      tp_oper: "Cadastro"
+      tp_oper: "Cadastro",
+      selectedCountry: null,
+      countries: [
+        { value: null, text: 'Selecione o país do Aeroporto' },
+        { value: 'EUA', text: 'Estados Unidos da America' },
+        { value: 'BRA', text: 'Brasil' },
+        { value: 'ARG', text: 'Argentina' }
+      ],
+      states: [
+        { value: null, text: 'Selecione o estado do Aeroporto' },
+        { value: 'SP', text: 'São Paulo' },
+        { value: 'RJ', text: 'Rio' },
+        { value: 'RS', text: 'Rio Grande' }
+      ],
+      cities: [
+        { value: null, text: 'Selecione a cidade do Aeroporto' },        
+        { value: 'SAO', text: 'São Paulo' },
+        { value: 'GRU', text: 'Guarulhos' }
+      ],
+      selectedState: null,
+      selectedCity: null
+    }
+  },
+  watch: {
+    'selectedCountry': function(val, oldVal){
+      console.log('Old val' + oldVal)
+      console.log('New val' + val)    
     }
   }
 }

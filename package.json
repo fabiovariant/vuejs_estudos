@@ -1,8 +1,8 @@
 {
-  "name": "cwt_new_r2",
+  "name": "vue-js-new-layout",
   "version": "1.0.0",
   "description": "Prototipo do novo R2",
-  "author": "Fabio Silva (Sav'n) <fabio.silva@savn.com.br>",
+  "author": "Fabio Silva (Sav'n) <fabiovariant@hotmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
