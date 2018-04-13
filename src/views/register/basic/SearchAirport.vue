@@ -17,8 +17,12 @@
             </b-col>
           </b-row>
           <b-row sm="10">
-            <b-table striped 
+            <b-table 
+                id="listTable"
+                ref="listTable"
+                striped 
                 hover 
+                style="cursor: pointer;"
                 :items="items"
                 :fields="fields"
                 v-model="shownItems"
@@ -32,9 +36,6 @@
                   <i class="fa fa-plus-circle"></i> Cadastrar novo
               </b-button>
             </router-link>
-            <b-button type="reset" size="sm" variant="warning" style="color: white">
-              <i class="fa fa-edit"></i> Alterar
-            </b-button>
             <b-button type="reset" size="sm" variant="danger"><i class="fa fa-ban"></i> Limpar</b-button>
           </div>
         </b-card>
@@ -49,11 +50,15 @@ export default {
     return {
       selectedSearch: null,
       shownItems: null,
-      fields: [ 'Sigla', 'Nome', 'País'],
+      fields: [ 
+        {key: 'sg_airport', label: 'Sigla'},
+        {key: 'name', label: 'Nome'}, 
+        {key: 'country', label: 'País'}
+      ],
       items: [
-        { Sigla: 'SDU', Nome: 'International airport of Rio', País: 'Brazil' },
-        { Sigla: 'CGH', Nome: 'International airport of SP', País: 'Brazil' },
-        { Sigla: 'MIA', Nome: 'International airport of Miami', País: 'EUA' }
+        { sg_airport: 'SDU', name: 'International airport of Rio', country: 'Brazil' },
+        { sg_airport: 'CGH', name: 'International airport of SP', country: 'Brazil' },
+        { sg_airport: 'MIA', name: 'International airport of Miami', country: 'EUA' }
       ],
       searchBy: [
         { value: null, text: 'Selecione um tipo de busca' },        
@@ -64,11 +69,8 @@ export default {
   },
   methods: {
     rowClickSelector(record, index, object) {
-      // 'record' will be the row data from items
-      // `index` will be the visible row number (available in the v-model 'shownItems')
-      console.log(record); // This will be the item data for the row
-      console.log(index)
-      console.log(object)
+      let sg_airport = record.sg_airport
+      this.$router.push({ path: `/register/basic/airport/${sg_airport}` })
     }
   }
 }

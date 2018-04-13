@@ -26,6 +26,11 @@ export default {
           path: 'airport/new',
           name: 'Cadastrar Aeroporto',
           component: CadAltAirport
+        },
+        {
+          path: 'airport/:sg_airport',
+          name: 'Alterar Aeroporto',
+          component: CadAltAirport
         }
       ]
     },
