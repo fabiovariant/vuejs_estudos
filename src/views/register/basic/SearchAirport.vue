@@ -17,13 +17,14 @@
             </b-col>
           </b-row>
           <b-row sm="10">
-              <b-table 
-                :items="items" 
-                :fields="fields" 
-                striped hover
-                @select="getDataToAlter">
-
-              </b-table>
+            <b-table striped 
+                hover 
+                :items="items"
+                :fields="fields"
+                v-model="shownItems"
+                @row-clicked="rowClickSelector"
+              >
+            </b-table>
           </b-row>
           <div slot="footer">
             <router-link :to="{path: 'airport/new'}" style="color: white">
@@ -47,7 +48,8 @@ export default {
   data () {
     return {
       selectedSearch: null,
-      fields: [ 'Sigla', 'Nome', 'País' ],
+      shownItems: null,
+      fields: [ 'Sigla', 'Nome', 'País'],
       items: [
         { Sigla: 'SDU', Nome: 'International airport of Rio', País: 'Brazil' },
         { Sigla: 'CGH', Nome: 'International airport of SP', País: 'Brazil' },
@@ -61,8 +63,12 @@ export default {
     }
   },
   methods: {
-    getDataToAlter: function(item) {
-       console.log(item)
+    rowClickSelector(record, index, object) {
+      // 'record' will be the row data from items
+      // `index` will be the visible row number (available in the v-model 'shownItems')
+      console.log(record); // This will be the item data for the row
+      console.log(index)
+      console.log(object)
     }
   }
 }
