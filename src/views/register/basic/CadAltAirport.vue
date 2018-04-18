@@ -11,16 +11,21 @@
               <strong>{{tp_oper}}</strong> <small>Aéroporto</small>
             </div>
             <b-row>
-              <b-col sm="8">
-                <b-form-group>
-                  <label for="nm_airport">Aéroporto</label>
-                  <b-form-input v-model="selectedAirport.name" type="text" id="nm_airport" placeholder="Miami Airport"></b-form-input>
-                </b-form-group>
-              </b-col>
               <b-col sm="4">
                 <b-form-group>
                   <label for="sg_airport">Sigla</label>
-                  <b-form-input v-model="selectedAirport.sg_airport" type="text" id="sg_airport" placeholder="MIA"></b-form-input>
+                  <b-form-input v-model.trim="selectedAirport.sg_airport" type="text" 
+                    id="sg_airport" placeholder="MIA" maxlength="3"
+                    v-bind:class="[has_sg_airport_err ? 'form-control is-invalid' : '']"></b-form-input>
+                </b-form-group>
+                <b-tooltip ref="tooltip" target="sg_airport" disabled>
+                  Ops, parece que já existe um aéroporto com essa sigla.
+                </b-tooltip>
+              </b-col>
+              <b-col sm="8">
+                <b-form-group>
+                  <label for="nm_airport">Aéroporto</label>
+                  <b-form-input v-model.trim="selectedAirport.name" type="text" id="nm_airport" placeholder="Miami Airport"></b-form-input>
                 </b-form-group>
               </b-col>
             </b-row>
@@ -76,6 +81,7 @@ export default {
   name: 'cadAeroporto',
   data() {
     return {
+      has_sg_airport_err: false,
       tp_oper: "Cadastro",
       countries: [
         { value: undefined, text: 'Selecione o país do Aeroporto', },
@@ -109,6 +115,20 @@ export default {
     save: function() {
       console.log(this.selectedAirport.sg_airport)
     }
+  },
+  watch: {
+    'selectedAirport.sg_airport'(newVal){
+      if(newVal.length >= 3 && 
+          this.airports.filter(e => e.sg_airport == newVal).length > 0) {
+        this.has_sg_airport_err = true
+        this.$refs.tooltip.$emit('enable')
+        this.$refs.tooltip.$emit('open')
+      } else {
+        this.has_sg_airport_err = false
+        this.$refs.tooltip.$emit('disable')
+        this.$refs.tooltip.$emit('close')
+      }
+    },
   },
   beforeMount() {
     let sgAirport = this.$route.params.sg_airport
