@@ -16,7 +16,8 @@
                   <label for="sg_airport">Sigla</label>
                   <b-form-input v-model.trim="selectedAirport.sg_airport" type="text" 
                     id="sg_airport" placeholder="MIA" maxlength="3"
-                    v-bind:class="[has_sg_airport_err ? 'form-control is-invalid' : '']"></b-form-input>
+                    v-bind:class="[has_sg_airport_err ? 'form-control is-invalid' : '']"
+                    :disabled="is_alt"></b-form-input>
                 </b-form-group>
                 <b-tooltip ref="tooltip" target="sg_airport" disabled>
                   Ops, parece que já existe um aéroporto com essa sigla.
@@ -77,10 +78,12 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: 'cadAeroporto',
   data() {
     return {
+      is_alt: false,
       has_sg_airport_err: false,
       tp_oper: "Cadastro",
       countries: [
@@ -118,7 +121,7 @@ export default {
   },
   watch: {
     'selectedAirport.sg_airport'(newVal){
-      if(newVal.length >= 3 && 
+      if(!this.is_alt && newVal.length >= 3 && 
           this.airports.filter(e => e.sg_airport == newVal).length > 0) {
         this.has_sg_airport_err = true
         this.$refs.tooltip.$emit('enable')
@@ -133,10 +136,19 @@ export default {
   beforeMount() {
     let sgAirport = this.$route.params.sg_airport
     if (sgAirport != undefined || sgAirport != null) {
-      let filter = this.airports.filter(function(value){
-        return value.sg_airport == sgAirport
-      })[0]
-      this.selectedAirport = filter
+      let url = `http://localhost:8076/airport/name/` + sgAirport
+      this.is_alt = true
+      axios.get(url, {
+	      headers: {
+	        'Access-Control-Allow-Origin': '*',
+	      },
+        crossDomain: true
+	    }).then(response => {
+        // JSON responses are automatically parsed.
+        this.selectedAirport = response.data
+      }).catch(e => {
+        console.log(e.response)
+      })
     }
   }
 }
