@@ -8,10 +8,10 @@
               <b-form-select id="tp_seach" v-model="selectedSearch" :options="searchBy" class="mb-3" />
             </b-col>
             <b-col sm="6" id="wrapper">
-              <b-form-input type="text" id="tx_search" placeholder="Digite sua busca" class="mb-3" />
+              <b-form-input type="text" id="tx_search" v-model="txSearch" placeholder="Digite sua busca" class="mb-3" />
             </b-col>
             <b-col sm="2" id="wrapper">
-              <b-button id="searchBtn" type="submit" size="lg" variant="success" class="mb-3">
+              <b-button id="searchBtn" size="lg" variant="success" class="mb-3" @click="search">
                 <i class="fa fa-search"></i> Buscar
               </b-button>
             </b-col>
@@ -45,21 +45,19 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data () {
     return {
       selectedSearch: null,
+      txSearch: null,
       shownItems: null,
       fields: [ 
         {key: 'sg_airport', label: 'Sigla'},
         {key: 'name', label: 'Nome'}, 
         {key: 'country', label: 'País'}
       ],
-      items: [
-        { sg_airport: 'SDU', name: 'International airport of Rio', country: 'Brazil' },
-        { sg_airport: 'CGH', name: 'International airport of SP', country: 'Brazil' },
-        { sg_airport: 'MIA', name: 'International airport of Miami', country: 'EUA' }
-      ],
+      items: [],
       searchBy: [
         { value: null, text: 'Selecione um tipo de busca' },        
         { value: 'SG', text: 'Por sigla' },
@@ -71,6 +69,23 @@ export default {
     rowClickSelector(record, index, object) {
       let sg_airport = record.sg_airport
       this.$router.push({ path: `/register/basic/airport/${sg_airport}` })
+    },
+    search: function(event){
+      console.log(this.selectedSearch)
+      if (this.selectedSearch == 'SG') {
+        let url = `http://localhost:8076/airport/name/` + this.txSearch
+        this.is_alt = true
+        axios.get(url, {
+	        headers: {
+	          'Access-Control-Allow-Origin': '*',
+	        },
+          crossDomain: true
+	      }).then(response => {
+          this.items = [response.data]
+        }).catch(e => {
+          console.log(e)
+        })
+      }    
     }
   }
 }
