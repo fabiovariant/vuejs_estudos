@@ -1,5 +1,6 @@
 // Views
-import CadAltAirport from '@/views/register/basic/CadAltAirport'
+import AltAirport from '@/views/register/basic/AltAirport'
+import CadAirport from '@/views/register/basic/CadAirport'
 import CadAirline from '@/views/register/providers/Airline'
 import SearchAirport from '@/views/register/basic/SearchAirport'
 
@@ -25,12 +26,12 @@ export default {
         {
           path: 'airport/new',
           name: 'Cadastrar Aeroporto',
-          component: CadAltAirport
+          component: CadAirport
         },
         {
           path: 'airport/:sg_airport',
           name: 'Alterar Aeroporto',
-          component: CadAltAirport
+          component: AltAirport
         }
       ]
     },
