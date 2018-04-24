@@ -45,7 +45,9 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
+import calls from './airport_calls'
+
 export default {
   data () {
     return {
@@ -71,16 +73,9 @@ export default {
       this.$router.push({ path: `/register/basic/airport/${sg_airport}` })
     },
     search: function(event){
-      console.log(this.selectedSearch)
       if (this.selectedSearch == 'SG') {
-        let url = `http://localhost:8076/airport/name/` + this.txSearch
-        this.is_alt = true
-        axios.get(url, {
-	        headers: {
-	          'Access-Control-Allow-Origin': '*',
-	        },
-          crossDomain: true
-	      }).then(response => {
+        calls.getAirportByInitials(this.txSearch)
+        .then(response => {
           this.items = [response.data]
         }).catch(e => {
           console.log(e)
