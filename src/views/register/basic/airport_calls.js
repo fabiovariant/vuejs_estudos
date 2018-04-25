@@ -36,6 +36,7 @@ function getStatesByCountry (cdCountry) {
 
 function getCitiesByState (cdCountry, cdState) {
   let callURL = API_URL + '/register/countries/states/' + cdCountry + '/' + cdState
+  console.log()
   return axios.get(callURL, {
     headers: {
       'Access-Control-Allow-Origin': '*'
@@ -44,9 +45,22 @@ function getCitiesByState (cdCountry, cdState) {
   })
 }
 
+function postAirport (airport) {
+  let callURL = API_URL + '/airport'
+  return axios.post(callURL, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    },
+    crossDomain: true,
+    body: airport
+  })
+}
+
 export default {
   getAirportByInitials,
   getCountriesList,
   getStatesByCountry,
-  getCitiesByState
+  getCitiesByState,
+  postAirport
 }

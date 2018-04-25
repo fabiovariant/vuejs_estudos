@@ -33,7 +33,12 @@ export default {
   },
   methods: {
     save: function (airportToSave) {
-      console.log(airportToSave.name)
+      calls.postAirport(airportToSave)
+      .then(response => {
+        console.log(response)
+      }).catch(e => {
+        console.log('Error saving airport' + e)
+      })
     }
   },
   created() {

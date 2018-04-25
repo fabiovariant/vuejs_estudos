@@ -62,8 +62,7 @@ export default {
       items: [],
       searchBy: [
         { value: null, text: 'Selecione um tipo de busca' },        
-        { value: 'SG', text: 'Por sigla' },
-        { value: 'NM', text: 'Por nome' }
+        { value: 'SG', text: 'Por sigla' }
       ]
     }
   },

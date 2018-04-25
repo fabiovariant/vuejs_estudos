@@ -123,15 +123,15 @@ export default {
     getStates: function (cdCountry) {
       calls.getStatesByCountry(cdCountry)
       .then(response => {
-        this.states = response.data.state
+        this.states = response.data.states
       }).catch(e => {
         console.log('Error getting states by country' + e)
       })
     },
     getCities: function (cdCountry, cdState) {
-      call.getCitiesByState(cdCountry, cdState)
+      calls.getCitiesByState(cdCountry, cdState)
       .then(response => {
-        this.cities = response.data.state[0].cities
+        this.cities = response.data.cities
       }).catch(e => {
         console.log('Error getting cities by State' + e)
       })
